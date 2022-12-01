@@ -29,7 +29,8 @@ func NewServer() *Server {
 	}
 
 	rand.Read(svr.datas)
-	svr.hashStr = hex.EncodeToString(svr.hasher.Sum(svr.datas))
+	svr.hasher.Write(svr.datas)
+	svr.hashStr = hex.EncodeToString(svr.hasher.Sum(nil))
 
 	return svr
 }

@@ -1,31 +1,48 @@
 package main
 
 import (
-	"io"
-	"log"
-	"net/http"
-	//"strings"
+	"fmt"
+
+	"http_clt/task"
 )
 
+type Cmd struct {
+	name   string
+	domain string
+	uri    string
+}
+
 func main() {
-	requrl := "http://127.0.0.1:8080/abc.file"
+	taskMgr := task.NewTaskMgr()
 
-	req, err := http.NewRequest("GET", requrl, nil)
-	if err != nil {
-		log.Println(err)
+	// exchange in/out
+	cmd := &Cmd{
+		name: "job",
+	}
+	for {
+		if exchangeCMD(cmd) == false {
+			continue
+		}
+		switch cmd.name {
+		case "test":
+			fmt.Println("hello, test")
+		case "job":
+			go taskMgr.StartJob(100)
+		default:
+		}
+	}
+	return
+}
+
+func exchangeCMD(cmd *Cmd) bool {
+	fmt.Println("请输入: <domain> <uri>")
+	fmt.Scanln(&cmd.domain, &cmd.uri)
+	fmt.Printf("domain: %v, uri: %v, 回车确认", cmd.domain, cmd.uri)
+	var check string
+	fmt.Scanln(&check)
+	if check != "" {
+		return false
 	}
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Println(err)
-	}
-
-	defer resp.Body.Close()
-
-	h := NewHashCheck(resp.Body)
-
-	//io.Discard
-	buf := make([]byte, 1024)
-	io.CopyBuffer(io.Discard, h, buf)
+	return true
 }
