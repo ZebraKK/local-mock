@@ -27,7 +27,10 @@ func main() {
 		case "test":
 			fmt.Println("hello, test")
 		case "job":
-			go taskMgr.StartJob(100)
+			domain := "yxw.iqy.qbox.net"
+			uri := "/64K"
+			cnt := 1
+			go taskMgr.StartJob(uri, domain, cnt)
 		default:
 		}
 	}
