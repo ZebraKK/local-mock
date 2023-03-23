@@ -1,4 +1,5 @@
 # local-mock
+[![BuildStatus](https://github.com/ZebraKK/local-mock/actions/workflows/main.yml/badge.svg)]
 [![Go Report Card](https://goreportcard.com/badge/github.com/zebrakk/local-mock)](https://goreportcard.com/report/github.com/zebrakk/local-mock)
 
 ## summary
