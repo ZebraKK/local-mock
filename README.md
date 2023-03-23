@@ -1,4 +1,5 @@
 # local-mock
+[![Go Report Card](https://goreportcard.com/badge/github.com/zebrakk/local-mock)](https://goreportcard.com/report/github.com/zebrakk/local-mock)
 
 ## summary
 简易的http client端和 server端，方便测试。
